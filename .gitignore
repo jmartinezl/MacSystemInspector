@@ -1,0 +1,4 @@
+# Datos locales de herramientas, no forman parte del código
+.repowise/
+.DS_Store
+xcuserdata/
