@@ -28,14 +28,14 @@ enum Format {
 
 extension ProcessInfo.ThermalState {
 
-    /// Nombre del estado térmico en español.
+    /// Nombre del estado térmico traducido al idioma del sistema.
     var localizedName: String {
         switch self {
-        case .nominal: "Normal"
-        case .fair: "Moderado"
-        case .serious: "Alto"
-        case .critical: "Crítico"
-        @unknown default: "Desconocido"
+        case .nominal: String(localized: "Normal")
+        case .fair: String(localized: "Fair")
+        case .serious: String(localized: "Serious")
+        case .critical: String(localized: "Critical")
+        @unknown default: String(localized: "Unknown")
         }
     }
 }

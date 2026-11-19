@@ -1,31 +1,33 @@
 import AppKit
 
-/// Genera el informe del sistema y lo copia al portapapeles.
+/// Genera el informe del sistema y lo copia al portapapeles; nunca incluye el número de serie.
 enum ReportBuilder {
 
     // MARK: - Texto
 
     /// Informe legible, una línea por dato.
     static func text(info: SystemInfo, monitor: SystemMonitor) -> String {
+        let storageTotal = Format.bytes(monitor.storage.total, .file)
+        let storageAvailable = Format.bytes(monitor.storage.available, .file)
         var lines = [
             "Mac System Inspector",
             "macOS: \(info.macOSVersion) (\(info.macOSBuild))",
-            "Equipo: \(info.hostName)",
-            "Modelo: \(info.modelIdentifier)",
+            String(localized: "Computer Name: \(info.hostName)"),
+            String(localized: "Model: \(info.modelIdentifier)"),
             "Chip: \(info.chipName)",
-            "Arquitectura: \(info.architecture)",
-            "Núcleos: \(info.physicalCores) físicos / \(info.logicalCores) lógicos",
-            "Memoria: \(Format.bytes(info.memoryBytes, .memory))",
+            String(localized: "Architecture: \(info.architecture)"),
+            String(localized: "Cores: \(info.physicalCores) physical / \(info.logicalCores) logical"),
+            String(localized: "Memory: \(Format.bytes(info.memoryBytes, .memory))"),
             "GPU: \(info.gpuName)",
-            "Almacenamiento: \(Format.bytes(monitor.storage.total, .file)) (\(Format.bytes(monitor.storage.available, .file)) disponibles)"
+            String(localized: "Storage: \(storageTotal) (\(storageAvailable) available)")
         ]
         for display in info.displays {
-            lines.append("Pantalla: \(display.name) \(display.resolution) @\(display.scale)x")
+            lines.append(String(localized: "Display: \(display.name) \(display.resolution) @\(display.scale)x"))
         }
         return lines.joined(separator: "\n")
     }
 
-    // MARK: - JSON (sin número de serie, a propósito)
+    // MARK: - JSON
 
     /// Informe en JSON con claves ordenadas.
     static func json(info: SystemInfo, monitor: SystemMonitor) -> String {

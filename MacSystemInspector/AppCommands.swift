@@ -12,7 +12,7 @@ struct AppCommands: Commands {
 
         // MARK: Acerca de (reemplaza el estándar)
         CommandGroup(replacing: .appInfo) {
-            Button("Acerca de MacSystemInspector") {
+            Button("About MacSystemInspector") {
                 openWindow(id: "about")
             }
         }
@@ -21,47 +21,45 @@ struct AppCommands: Commands {
         CommandGroup(after: .pasteboard) {
             Divider()
 
-            Button("Copiar informe completo") {
+            Button("Copy Full Report") {
                 ReportBuilder.copy(ReportBuilder.text(info: info, monitor: monitor))
             }
             .keyboardShortcut("c", modifiers: [.command, .shift])
 
-            Button("Copiar informe como JSON") {
+            Button("Copy Report as JSON") {
                 ReportBuilder.copy(ReportBuilder.json(info: info, monitor: monitor))
             }
             .keyboardShortcut("j", modifiers: [.command, .shift])
 
-            Menu("Copiar dato…") {
-                Button("Versión de macOS") { ReportBuilder.copy("\(info.macOSVersion) (\(info.macOSBuild))") }
-                Button("Modelo") { ReportBuilder.copy(info.modelIdentifier) }
-                Button("Chip") { ReportBuilder.copy(info.chipName) }
-                Button("Memoria") { ReportBuilder.copy(Format.bytes(info.memoryBytes, .memory)) }
-                Button("GPU") { ReportBuilder.copy(info.gpuName) }
-                Divider()
-                Button("Número de serie") { ReportBuilder.copy(info.serialNumber) }
+            Menu("Copy Item") {
+                Button("macOS Version") { ReportBuilder.copy("\(info.macOSVersion) (\(info.macOSBuild))") }
+                Button("Model") { ReportBuilder.copy(info.modelIdentifier) }
+                Button(String("Chip")) { ReportBuilder.copy(info.chipName) }
+                Button("Memory") { ReportBuilder.copy(Format.bytes(info.memoryBytes, .memory)) }
+                Button(String("GPU")) { ReportBuilder.copy(info.gpuName) }
             }
         }
 
         // MARK: Easter eggs
-        CommandMenu("Secretos") {
+        CommandMenu("Secrets") {
 
-            Button("🦝 Saludar al mapache") {
+            Button("🦝 Say Hi to the Raccoon") {
                 appState.easterEgg = EasterEggMessage(
-                    title: "🦝 ¡Hola, mapache boreal!",
-                    message: "Los mapaches no \"lavan\" su comida: exploran con las patas, que tienen una sensibilidad táctil enorme. Esta app hace lo mismo con tu Mac."
+                    title: String(localized: "🦝 Hi, boreal raccoon!"),
+                    message: String(localized: "Raccoons don’t really “wash” their food: they explore with their paws, which are extremely sensitive to touch. This app does the same with your Mac.")
                 )
             }
 
-            Button("Datos inútiles") {
+            Button("Useless Facts") {
                 appState.easterEgg = EasterEggMessage(
-                    title: "📀 Datos inútiles",
+                    title: String(localized: "📀 Useless Facts"),
                     message: uselessFacts
                 )
             }
 
             Divider()
 
-            Toggle("Modo Matrix", isOn: $appState.matrixMode)
+            Toggle("Matrix Mode", isOn: $appState.matrixMode)
                 .keyboardShortcut("m", modifiers: [.command, .option])
         }
     }
@@ -75,11 +73,11 @@ struct AppCommands: Commands {
         let diskFloppies = (Double(monitor.storage.total) / floppy).formatted(.number.precision(.fractionLength(0)))
         let seconds = Int(monitor.uptime).formatted()
 
-        return """
-        Tu RAM equivale a \(ramFloppies) disquetes.
-        Tu disco equivale a \(diskFloppies) disquetes.
-        Llevas \(seconds) segundos encendido.
-        Y tienes \(info.logicalCores) núcleos trabajando por ti.
-        """
+        return String(localized: """
+        Your RAM equals \(ramFloppies) floppy disks.
+        Your disk equals \(diskFloppies) floppy disks.
+        Your Mac has been on for \(seconds) seconds.
+        And you have \(info.logicalCores) cores working for you.
+        """)
     }
 }

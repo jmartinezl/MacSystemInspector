@@ -32,7 +32,7 @@ struct ContentView: View {
         .onDisappear { monitor.stop() }
         .toolbar {
             ToolbarItem {
-                Button("Copiar informe", systemImage: "doc.on.doc") {
+                Button("Copy Report", systemImage: "doc.on.doc") {
                     ReportBuilder.copy(ReportBuilder.text(info: info, monitor: monitor))
                 }
             }
@@ -60,15 +60,15 @@ struct ContentView: View {
     // MARK: - Resumen en vivo (ancho completo)
 
     private var liveSummary: some View {
-        Card(title: "Rendimiento en vivo", systemImage: "gauge.with.dots.needle.67percent") {
+        Card(title: "Live Performance", systemImage: "gauge.with.dots.needle.67percent") {
             HStack(alignment: .top, spacing: 12) {
                 RingGauge(title: "CPU",
                           fraction: monitor.cpuUsage,
-                          detail: "\(info.logicalCores) núcleos")
-                RingGauge(title: "Memoria",
+                          detail: String(localized: "\(info.logicalCores) cores"))
+                RingGauge(title: "Memory",
                           fraction: monitor.memory.fraction,
                           detail: "\(Format.bytes(monitor.memory.used, .memory)) / \(Format.bytes(monitor.memory.total, .memory))")
-                RingGauge(title: "Disco",
+                RingGauge(title: "Disk",
                           fraction: monitor.storage.usedFraction,
                           detail: "\(Format.bytes(monitor.storage.used, .file)) / \(Format.bytes(monitor.storage.total, .file))")
             }
@@ -79,49 +79,49 @@ struct ContentView: View {
     // MARK: - Tarjetas
 
     private var systemCard: some View {
-        Card(title: "Sistema", systemImage: "macwindow") {
-            InfoRow("macOS", "\(info.macOSVersion) (\(info.macOSBuild))")
-            InfoRow("Equipo", info.hostName)
-            InfoRow("Encendido", Format.uptime(monitor.uptime))
-            InfoRow("Estado térmico", monitor.thermalState.localizedName)
+        Card(title: "System", systemImage: "macwindow") {
+            InfoRow(verbatim: "macOS", "\(info.macOSVersion) (\(info.macOSBuild))")
+            InfoRow("Computer Name", info.hostName)
+            InfoRow("Uptime", Format.uptime(monitor.uptime))
+            InfoRow("Thermal State", monitor.thermalState.localizedName)
         }
     }
 
     private var hardwareCard: some View {
         Card(title: "Hardware", systemImage: "cpu") {
-            InfoRow("Modelo", info.modelIdentifier)
-            InfoRow("Chip / CPU", info.chipName)
-            InfoRow("Arquitectura", info.architecture)
-            InfoRow("Núcleos", "\(info.physicalCores) físicos · \(info.logicalCores) lógicos")
-            InfoRow("GPU", info.gpuName)
-            InfoRow("Serie", info.serialNumber)
+            InfoRow("Model", info.modelIdentifier)
+            InfoRow(verbatim: "Chip / CPU", info.chipName)
+            InfoRow("Architecture", info.architecture)
+            InfoRow("Cores", String(localized: "\(info.physicalCores) physical · \(info.logicalCores) logical"))
+            InfoRow(verbatim: "GPU", info.gpuName)
+            SecretInfoRow("Serial Number", info.serialNumber)
         }
     }
 
     private var memoryStorageCard: some View {
-        Card(title: "Memoria y almacenamiento", systemImage: "memorychip") {
-            InfoRow("Memoria total", Format.bytes(info.memoryBytes, .memory))
-            InfoRow("Memoria en uso", Format.bytes(monitor.memory.used, .memory))
+        Card(title: "Memory & Storage", systemImage: "memorychip") {
+            InfoRow("Total Memory", Format.bytes(info.memoryBytes, .memory))
+            InfoRow("Memory Used", Format.bytes(monitor.memory.used, .memory))
             Divider()
-            InfoRow("Disco total", Format.bytes(monitor.storage.total, .file))
-            InfoRow("Disco usado", Format.bytes(monitor.storage.used, .file))
-            InfoRow("Disponible", Format.bytes(monitor.storage.available, .file))
+            InfoRow("Total Disk", Format.bytes(monitor.storage.total, .file))
+            InfoRow("Disk Used", Format.bytes(monitor.storage.used, .file))
+            InfoRow("Available", Format.bytes(monitor.storage.available, .file))
         }
     }
 
     private func batteryCard(_ battery: BatteryInfo) -> some View {
-        Card(title: "Batería", systemImage: "battery.100") {
-            GaugeRow(title: "Carga",
+        Card(title: "Battery", systemImage: "battery.100") {
+            GaugeRow(title: "Charge",
                      fraction: battery.fraction,
                      detail: Format.percent(battery.fraction))
-            InfoRow("Estado", battery.statusText)
+            InfoRow("Status", battery.statusText)
         }
     }
 
     private var displaysCard: some View {
-        Card(title: "Pantallas", systemImage: "display") {
+        Card(title: "Displays", systemImage: "display") {
             ForEach(info.displays) { display in
-                InfoRow(display.name, "\(display.resolution) @\(display.scale)x")
+                InfoRow(verbatim: display.name, "\(display.resolution) @\(display.scale)x")
             }
         }
     }

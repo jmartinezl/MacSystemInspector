@@ -20,7 +20,7 @@ struct MacSystemInspectorApp: App {
             AppCommands(info: info, monitor: monitor, appState: appState)
         }
 
-        Window("Acerca de MacSystemInspector", id: "about") {
+        Window("About MacSystemInspector", id: "about") {
             AboutView()
         }
         .windowResizability(.contentSize)

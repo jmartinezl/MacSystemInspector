@@ -1,0 +1,74 @@
+/* Español */
+
+/* Ventana principal */
+"Copy Report" = "Copiar informe";
+"OK" = "OK";
+"Live Performance" = "Rendimiento en vivo";
+"CPU" = "CPU";
+"%lld cores" = "%lld núcleos";
+"Memory" = "Memoria";
+"Disk" = "Disco";
+"System" = "Sistema";
+"Computer Name" = "Equipo";
+"Uptime" = "Encendido";
+"Thermal State" = "Estado térmico";
+"Hardware" = "Hardware";
+"Model" = "Modelo";
+"Architecture" = "Arquitectura";
+"Cores" = "Núcleos";
+"%lld physical · %lld logical" = "%lld físicos · %lld lógicos";
+"Serial Number" = "Número de serie";
+"Show" = "Mostrar";
+"Hide" = "Ocultar";
+"Memory & Storage" = "Memoria y almacenamiento";
+"Total Memory" = "Memoria total";
+"Memory Used" = "Memoria en uso";
+"Total Disk" = "Disco total";
+"Disk Used" = "Disco usado";
+"Available" = "Disponible";
+"Battery" = "Batería";
+"Charge" = "Carga";
+"Status" = "Estado";
+"Charging" = "Cargando";
+"Plugged In" = "Conectada";
+"On Battery" = "Con batería";
+"Displays" = "Pantallas";
+
+/* Estado térmico */
+"Normal" = "Normal";
+"Fair" = "Moderado";
+"Serious" = "Alto";
+"Critical" = "Crítico";
+"Unknown" = "Desconocido";
+
+/* Menús */
+"About MacSystemInspector" = "Acerca de MacSystemInspector";
+"Copy Full Report" = "Copiar informe completo";
+"Copy Report as JSON" = "Copiar informe como JSON";
+"Copy Item" = "Copiar dato";
+"macOS Version" = "Versión de macOS";
+"Secrets" = "Secretos";
+"🦝 Say Hi to the Raccoon" = "🦝 Saludar al mapache";
+"🦝 Hi, boreal raccoon!" = "🦝 ¡Hola, mapache boreal!";
+"Raccoons don’t really “wash” their food: they explore with their paws, which are extremely sensitive to touch. This app does the same with your Mac." = "Los mapaches no “lavan” su comida: exploran con las patas, que tienen una sensibilidad táctil enorme. Esta app hace lo mismo con tu Mac.";
+"Useless Facts" = "Datos inútiles";
+"📀 Useless Facts" = "📀 Datos inútiles";
+"Your RAM equals %@ floppy disks.\nYour disk equals %@ floppy disks.\nYour Mac has been on for %@ seconds.\nAnd you have %lld cores working for you." = "Tu RAM equivale a %@ disquetes.\nTu disco equivale a %@ disquetes.\nLlevas %@ segundos encendido.\nY tienes %lld núcleos trabajando por ti.";
+"Matrix Mode" = "Modo Matrix";
+
+/* Acerca de */
+"Version %@ (%@)" = "Versión %@ (%@)";
+"Shows your hardware information in a single window." = "Muestra la información de tu hardware en una sola ventana.";
+"Developed by" = "Desarrollado por";
+"Made with SwiftUI in Xcode" = "Hecho con SwiftUI en Xcode";
+"Email" = "Correo";
+"🦝 You found the secret raccoon!" = "🦝 ¡Encontraste el mapache secreto!";
+
+/* Informe de texto */
+"Computer Name: %@" = "Equipo: %@";
+"Model: %@" = "Modelo: %@";
+"Architecture: %@" = "Arquitectura: %@";
+"Cores: %lld physical / %lld logical" = "Núcleos: %lld físicos / %lld lógicos";
+"Memory: %@" = "Memoria: %@";
+"Storage: %@ (%@ available)" = "Almacenamiento: %@ (%@ disponibles)";
+"Display: %@ %@ @%lldx" = "Pantalla: %@ %@ @%lldx";

@@ -35,6 +35,7 @@ struct SystemInfo {
     let logicalCores: Int
     let memoryBytes: UInt64
     let gpuName: String
+    /// Sensible: solo se muestra oculto en la interfaz, nunca en informes ni menús.
     let serialNumber: String
     let displays: [DisplayInfo]
 

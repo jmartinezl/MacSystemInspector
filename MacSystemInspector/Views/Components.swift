@@ -3,7 +3,7 @@ import AppKit
 
 /// Tarjeta con título e ícono que ocupa todo el ancho de su columna.
 struct Card<Content: View>: View {
-    let title: String
+    let title: LocalizedStringKey
     let systemImage: String
     @ViewBuilder var content: Content
 
@@ -30,7 +30,7 @@ struct Card<Content: View>: View {
 
 /// Anillo de progreso con porcentaje al centro y detalle debajo.
 struct RingGauge: View {
-    let title: String
+    let title: LocalizedStringKey
     let fraction: Double
     let detail: String
 
@@ -80,26 +80,34 @@ struct RingGauge: View {
 
 /// Fila de "etiqueta: valor" con el valor seleccionable.
 struct InfoRow: View {
-    let title: String
+    let title: Text
     let value: String
 
-    init(_ title: String, _ value: String) {
-        self.title = title
+    init(_ title: LocalizedStringKey, _ value: String) {
+        self.title = Text(title)
+        self.value = value
+    }
+
+    /// Variante para títulos que vienen del sistema y no se traducen.
+    init(verbatim title: String, _ value: String) {
+        self.title = Text(verbatim: title)
         self.value = value
     }
 
     var body: some View {
-        LabeledContent(title) {
+        LabeledContent {
             Text(value)
                 .textSelection(.enabled)
                 .multilineTextAlignment(.trailing)
+        } label: {
+            title
         }
     }
 }
 
 /// Barra de progreso horizontal con título y detalle.
 struct GaugeRow: View {
-    let title: String
+    let title: LocalizedStringKey
     let fraction: Double
     let detail: String
 
@@ -111,6 +119,39 @@ struct GaugeRow: View {
                 Text(detail).foregroundStyle(.secondary).monospacedDigit()
             }
             ProgressView(value: fraction.clampedToUnit)
+        }
+    }
+}
+
+/// Fila con un valor sensible oculto que se muestra solo al presionar el botón.
+struct SecretInfoRow: View {
+    let title: LocalizedStringKey
+    let value: String
+
+    @State private var isRevealed = false
+
+    init(_ title: LocalizedStringKey, _ value: String) {
+        self.title = title
+        self.value = value
+    }
+
+    private var buttonLabel: LocalizedStringKey { isRevealed ? "Hide" : "Show" }
+
+    var body: some View {
+        LabeledContent(title) {
+            HStack(spacing: 6) {
+                Text(isRevealed ? value : "••••••••••")
+                    .textSelection(.enabled)
+                    .monospaced(!isRevealed)
+                    .foregroundStyle(isRevealed ? .primary : .secondary)
+
+                Button(buttonLabel, systemImage: isRevealed ? "eye.slash" : "eye") {
+                    isRevealed.toggle()
+                }
+                .labelStyle(.iconOnly)
+                .buttonStyle(.borderless)
+                .help(buttonLabel)
+            }
         }
     }
 }

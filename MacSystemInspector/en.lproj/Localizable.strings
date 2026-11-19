@@ -1,0 +1,74 @@
+/* English */
+
+/* Main window */
+"Copy Report" = "Copy Report";
+"OK" = "OK";
+"Live Performance" = "Live Performance";
+"CPU" = "CPU";
+"%lld cores" = "%lld cores";
+"Memory" = "Memory";
+"Disk" = "Disk";
+"System" = "System";
+"Computer Name" = "Computer Name";
+"Uptime" = "Uptime";
+"Thermal State" = "Thermal State";
+"Hardware" = "Hardware";
+"Model" = "Model";
+"Architecture" = "Architecture";
+"Cores" = "Cores";
+"%lld physical · %lld logical" = "%lld physical · %lld logical";
+"Serial Number" = "Serial Number";
+"Show" = "Show";
+"Hide" = "Hide";
+"Memory & Storage" = "Memory & Storage";
+"Total Memory" = "Total Memory";
+"Memory Used" = "Memory Used";
+"Total Disk" = "Total Disk";
+"Disk Used" = "Disk Used";
+"Available" = "Available";
+"Battery" = "Battery";
+"Charge" = "Charge";
+"Status" = "Status";
+"Charging" = "Charging";
+"Plugged In" = "Plugged In";
+"On Battery" = "On Battery";
+"Displays" = "Displays";
+
+/* Thermal state */
+"Normal" = "Normal";
+"Fair" = "Fair";
+"Serious" = "Serious";
+"Critical" = "Critical";
+"Unknown" = "Unknown";
+
+/* Menus */
+"About MacSystemInspector" = "About MacSystemInspector";
+"Copy Full Report" = "Copy Full Report";
+"Copy Report as JSON" = "Copy Report as JSON";
+"Copy Item" = "Copy Item";
+"macOS Version" = "macOS Version";
+"Secrets" = "Secrets";
+"🦝 Say Hi to the Raccoon" = "🦝 Say Hi to the Raccoon";
+"🦝 Hi, boreal raccoon!" = "🦝 Hi, boreal raccoon!";
+"Raccoons don’t really “wash” their food: they explore with their paws, which are extremely sensitive to touch. This app does the same with your Mac." = "Raccoons don’t really “wash” their food: they explore with their paws, which are extremely sensitive to touch. This app does the same with your Mac.";
+"Useless Facts" = "Useless Facts";
+"📀 Useless Facts" = "📀 Useless Facts";
+"Your RAM equals %@ floppy disks.\nYour disk equals %@ floppy disks.\nYour Mac has been on for %@ seconds.\nAnd you have %lld cores working for you." = "Your RAM equals %@ floppy disks.\nYour disk equals %@ floppy disks.\nYour Mac has been on for %@ seconds.\nAnd you have %lld cores working for you.";
+"Matrix Mode" = "Matrix Mode";
+
+/* About */
+"Version %@ (%@)" = "Version %@ (%@)";
+"Shows your hardware information in a single window." = "Shows your hardware information in a single window.";
+"Developed by" = "Developed by";
+"Made with SwiftUI in Xcode" = "Made with SwiftUI in Xcode";
+"Email" = "Email";
+"🦝 You found the secret raccoon!" = "🦝 You found the secret raccoon!";
+
+/* Text report */
+"Computer Name: %@" = "Computer Name: %@";
+"Model: %@" = "Model: %@";
+"Architecture: %@" = "Architecture: %@";
+"Cores: %lld physical / %lld logical" = "Cores: %lld physical / %lld logical";
+"Memory: %@" = "Memory: %@";
+"Storage: %@ (%@ available)" = "Storage: %@ (%@ available)";
+"Display: %@ %@ @%lldx" = "Display: %@ %@ @%lldx";

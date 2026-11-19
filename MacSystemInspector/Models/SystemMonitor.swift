@@ -15,10 +15,10 @@ struct BatteryInfo {
     let isCharging: Bool
     let isPluggedIn: Bool
 
-    /// Estado de carga en español.
+    /// Estado de carga traducido al idioma del sistema.
     var statusText: String {
-        if isCharging { return "Cargando" }
-        return isPluggedIn ? "Conectada" : "Con batería"
+        if isCharging { return String(localized: "Charging") }
+        return isPluggedIn ? String(localized: "Plugged In") : String(localized: "On Battery")
     }
 }
 

@@ -11,7 +11,7 @@ struct AboutView: View {
         let info = Bundle.main.infoDictionary
         let version = info?["CFBundleShortVersionString"] as? String ?? "1.0"
         let build = info?["CFBundleVersion"] as? String ?? "1"
-        return "Versión \(version) (\(build))"
+        return String(localized: "Version \(version) (\(build))")
     }
 
     var body: some View {
@@ -24,34 +24,34 @@ struct AboutView: View {
                 .onTapGesture(perform: iconTapped)
 
             VStack(spacing: 2) {
-                Text("MacSystemInspector").font(.title.bold())
+                Text(verbatim: "MacSystemInspector").font(.title.bold())
                 Text(versionText).foregroundStyle(.secondary)
             }
 
-            Text("Muestra la información de tu hardware en una sola ventana.")
+            Text("Shows your hardware information in a single window.")
                 .multilineTextAlignment(.center)
                 .foregroundStyle(.secondary)
 
             Divider()
 
             VStack(spacing: 4) {
-                Text("Desarrollado por").font(.caption).foregroundStyle(.secondary)
-                Text("mapacheboreal").font(.headline)            // ← CAMBIA (nombre)
-                Text("Hecho con SwiftUI en Xcode").font(.caption).foregroundStyle(.secondary)
+                Text("Developed by").font(.caption).foregroundStyle(.secondary)
+                Text(verbatim: "jmartinezl").font(.headline)
+                Text("Made with SwiftUI in Xcode").font(.caption).foregroundStyle(.secondary)
             }
 
             HStack(spacing: 16) {
-                Link("GitHub", destination: URL(string: "https://github.com/tu-usuario")!)        // ← CAMBIA
-                Link("Correo", destination: URL(string: "mailto:tu@correo.com")!)                // ← CAMBIA
+                Link(String("GitHub"), destination: URL(string: "https://github.com/jmartinezl/MacSystemInspector")!)
+                Link("Email", destination: URL(string: "mailto:jesus.mtz.lorenzo@gmail.com")!)
             }
 
             if secretFound {
-                Text("🦝 ¡Encontraste el mapache secreto!")
+                Text("🦝 You found the secret raccoon!")
                     .font(.callout.weight(.medium))
                     .transition(.scale.combined(with: .opacity))
             }
 
-            Text("© 2026 mapacheboreal")                           // ← CAMBIA
+            Text(verbatim: "© 2026 jmartinezl")
                 .font(.caption2)
                 .foregroundStyle(.tertiary)
         }
