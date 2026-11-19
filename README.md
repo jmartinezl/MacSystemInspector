@@ -25,12 +25,17 @@ El menú **Secretos** y la ventana **Acerca de** tienen algunos easter eggs.
 
 ## Compilar y ejecutar
 
-Abre `MacSystemInspector.xcodeproj` en Xcode y presiona ⌘R, o desde la terminal:
+Abre `MacSystemInspector.xcodeproj` en Xcode y presiona ⌘R, o desde la terminal (sin abrir Xcode):
 
 ```bash
 xcodebuild -project MacSystemInspector.xcodeproj -scheme MacSystemInspector \
-  -destination 'platform=macOS' -configuration Debug build
+  -destination 'platform=macOS' -configuration Debug \
+  -derivedDataPath build build
+
+open build/Build/Products/Debug/MacSystemInspector.app
 ```
+
+El resultado queda en `build/` (ignorada por git). Si no cambiaste código, basta con el `open`.
 
 ## Estructura
 

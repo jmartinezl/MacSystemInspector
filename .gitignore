@@ -2,3 +2,4 @@
 .repowise/
 .DS_Store
 xcuserdata/
+build/
