@@ -26,6 +26,21 @@ La app está en español e inglés y usa el idioma del sistema. Si el sistema es
 
 Las traducciones están en `MacSystemInspector/en.lproj/Localizable.strings` y `MacSystemInspector/es.lproj/Localizable.strings`.
 
+## Instalar
+
+Descarga el `.dmg` desde [Releases](../../releases), ábrelo y arrastra la app a **Aplicaciones**.
+
+La app tiene firma ad-hoc y no está notarizada por Apple, así que la primera vez macOS la bloquea. Para abrirla:
+
+1. Intenta abrirla una vez y cierra el aviso.
+2. Ve a **Ajustes del Sistema → Privacidad y seguridad** y presiona **Abrir de todos modos**.
+
+O desde la terminal:
+
+```bash
+xattr -dr com.apple.quarantine /Applications/MacSystemInspector.app
+```
+
 ## Requisitos
 
 - macOS 26.7 o superior
@@ -45,6 +60,14 @@ open build/Build/Products/Debug/MacSystemInspector.app
 
 El resultado queda en `build/` (ignorada por git). Si no cambiaste código, basta con el `open`.
 
+## Generar el DMG
+
+```bash
+scripts/build-dmg.sh 1.0.0   # deja build/MacSystemInspector-1.0.0.dmg
+```
+
+En GitHub Actions, el workflow `Build DMG` hace lo mismo. Al subir un tag `v*` (por ejemplo `git tag v1.0.0 && git push origin v1.0.0`) crea un release con el DMG adjunto; también se puede correr a mano desde la pestaña Actions.
+
 ## Estructura
 
 ```
@@ -54,6 +77,7 @@ MacSystemInspector/
 ├── Models/              # Lectura de datos del sistema y estado de la app
 ├── Views/               # Vistas SwiftUI y componentes reutilizables
 ├── Helpers/             # sysctl y formateadores
+scripts/build-dmg.sh     # Build Release + DMG (local y CI)
 └── en.lproj, es.lproj/  # Traducciones
 ```
 
